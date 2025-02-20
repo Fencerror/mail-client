@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterOutlet, NavigationStart } from '@angular/router';
+import { Router, RouterOutlet, NavigationStart, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../data/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { AlertComponent } from '../components/alert/alert.component';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterLink, AlertComponent],
+  imports: [RouterOutlet, CommonModule, RouterLink, AlertComponent, RouterLinkActive],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss']
 })
