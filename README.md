@@ -135,7 +135,6 @@ app/
 
 ## Ссылки
 - **Репозиторий:** [GitHub](https://github.com/Fencerror/mail-client)
-- **Демо:** [Превью](https://fencerror.github.io/mail-client)
 
 ---
 
