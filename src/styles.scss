@@ -1,0 +1,41 @@
+@import 'fonts';
+:root{
+  --danger-color: #dc3545;
+  --primary-color: #0097a7;  
+  --secondary-color: #004d61; 
+  --background-color: #f5f7fa; 
+  --text-color: #1a1a1a; 
+  --accent-color: #c04c36; 
+  --success-color: #32CD32;
+  --darkgray: #767676;
+  --sp-x: 0.4rem;   
+  --sp-s: 1.8rem;
+  --sp-m: 2.8125rem;
+  --sp-l: 3.75rem;
+  --ff-ptroot: 'Pt Root', sans-serif; 
+  --ff-anonpro: 'Anonymous Pro', serif;
+  
+}
+
+body{
+  font-family: var(--ff-anonpro);
+  background-color: var(--white);
+  height: 100dvh;
+  margin: 0;
+}
+
+.btn{
+  border: 0.0625em solid var(--secondary-color);
+  color: var(--background-color);
+  border-radius: 0;
+  padding: 0.5em 1em;
+  background-color: var(--secondary-color);
+  &:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+  }
+}
+
+.btn-danger{
+  background-color: var(--brandred);
+}

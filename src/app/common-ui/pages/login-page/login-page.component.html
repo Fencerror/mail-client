@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="card p-4 shadow">
+    <h2 class="text-center">Вход</h2>
+    <form
+    class="login-form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input 
+        type="email" 
+        id="email" 
+        class="form-control" 
+        placeholder="Введите email"
+        formControlName="email"
+        [ngClass]="{'is-invalid': form.get('email')?.touched && form.get('email')?.invalid}"
+        >
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="invalid-feedback">
+          <div *ngIf="form.get('email')?.hasError('required')">Поле Email обязательно.</div>
+          <div *ngIf="form.get('email')?.hasError('email')">Введите корректный email.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <input  
+        type="password" 
+        id="password" 
+        class="form-control" 
+        placeholder="Введите пароль"
+        formControlName="password"
+        [ngClass]="{'is-invalid': form.get('password')?.touched && form.get('password')?.invalid}"
+        >
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="invalid-feedback">
+          <div *ngIf="form.get('email')?.hasError('required')">Поле пароль обязательно</div>
+          <div *ngIf="form.get('email')?.hasError('email')">Пароль должен состоять из 6 символов.</div>
+        </div>
+      </div>
+      <button 
+      class="btn btn-success"
+      type="submit"
+      >Войти</button>
+    </form>
+  </div>
+
+</div>
+

@@ -1,0 +1,29 @@
+:host{
+  color: var(--white);
+}
+
+.btn{
+  &:hover {
+    box-shadow: 0 0 2em var(--darkgray);
+    background-color: var(--secondary-color);
+  }
+  &:active{
+    box-shadow: 0 0 2em var(--darkgray);
+    background-color: var(--secondary-color);
+  }
+}
+
+.alert-danger{
+  width: 15em;
+}
+
+.editor-container {
+  background: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--background-color); 
+  border-radius: 0.3125em; 
+  padding: 0.5em; 
+  min-height: 1em; 
+  max-height: 5em;
+  overflow: auto;
+}

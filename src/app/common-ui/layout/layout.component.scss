@@ -1,0 +1,213 @@
+.layout {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: var(--ff-ptroot);
+}
+
+.topbar-main-container {
+  height: 5em;
+  background-color: var(--secondary-color);
+  color: var(--darkgray);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--sp-l);
+}
+
+.topbar-text, .exit-button{
+  &:hover{
+    color: var(--background-color);
+  }
+}
+.content-row {
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+}
+
+.sidebar {
+  background-color: var(--primary-color);
+  margin-right: var(--sp-m);
+  color: var(--background-color);
+  margin-top: var(--sp-m);
+  padding: var(--sp-m);
+  height: 100%;
+  border: 0.125em solid var(--secondary-color);
+  font-size: 1em;
+  .sidebar-items {
+    margin-bottom: 1.2em;
+    text-decoration: none;
+    color: var(--background-color);
+    &:hover{
+      background-color: var(--secondary-color);
+      transition: 0.5s;
+    }
+  }
+}
+
+.main-content {
+  background-color: var(--primary-color);
+  max-height: 50em;
+  color: var(--background-color);
+  flex: 1;
+  overflow-y: auto;
+  border: 0.125em solid var(--secondary-color);
+}
+
+.workspace {
+  padding: var(--sp-l);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.email-full {
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  display: grid;
+  grid-template-areas: 
+    "from date"
+    "body body"
+    "body body";
+  height: 100%;
+  margin-top: var(--sp-m);
+  margin-left: var(--sp-m);
+  padding: 1.2em;
+  border: 0.125em solid var(--secondary-color);
+  overflow: auto; 
+  max-height: 50em;
+  max-width: 30em;
+  &__from {grid-area: from; margin: 0; padding-right: 1em; border-bottom: 0.0625em solid var(--secondary-color);}
+  &__date {grid-area: date; margin: 0; border-bottom: 0.0625em solid var(--secondary-color);}
+  &__body {
+
+    grid-area: body; 
+    max-height: 20em;
+    p {word-break: break-all;}
+  &::after{
+      content: "";
+      display: block;
+      height: 1em; 
+  }
+  }
+  
+}
+.no-email{
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  display: grid;
+  grid-template-areas: 
+    "from date"
+    "body body"
+    "body body";
+  height: 100%;
+  margin-top: var(--sp-m);
+  margin-left: var(--sp-m);
+  padding: var(--sp-m);
+  border: 0.125em solid var(--secondary-color);
+  
+  &__from {grid-area: from; margin: 0;}
+  &__date {grid-area: date; margin: 0;}
+  &__body {grid-area: body; margin: 0; overflow-y: auto; p {word-break: break-all; hyphens: manual;}}
+}
+
+
+.exit-button {
+  padding: 0.5em 1.5em;
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+  gap: 0.5em;
+  margin: 0 2.5em;
+  border: 0.0625em solid var(--secondary-color);
+  color: var(--darkgray);
+  border-radius: 0;
+  padding: 0.5em 1em;
+  background-color: var(--secondary-color);
+  &:hover{
+    color:var(--background-color)
+  };
+}
+
+.reply-btn {
+  padding: 0;
+  margin-left: 9em;
+  width: 70%;
+  height: 30%;
+  border-radius: 0;
+  color: var(--background-color);
+  background-color: var(--secondary-color);
+  border: none;
+  &:hover {
+    box-shadow: 0 0 2em var(--darkgray);
+  }
+  &:active{
+    box-shadow: 0 0 2em var(--darkgray);
+    background-color: var(--secondary-color);
+  }
+}
+
+.continue-btn{
+  padding: 0;
+  margin-left: 8em;
+  width: 70%;
+  height: 30%;
+  border-radius: 0;
+  color: var(--background-color);
+  background-color: var(--secondary-color);
+  border: none;
+  &:hover {
+    box-shadow: 0 0 2em var(--darkgray);
+  }
+  &:active{
+    box-shadow: 0 0 2em var(--darkgray);
+    background-color: var(--secondary-color);
+  }
+}
+.main-menu-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.menu-item {
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  background-color: transparent;
+  color: var(--background-color);
+  text-align: center;
+  font-weight: 500;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.menu-item a {
+  display: block;
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+}
+
+.highlight {
+  background-color: var(--primary-color);
+}
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+
+@media (max-width: 48em) {
+  .topbar-main-container {
+    flex-direction: column;
+  }
+}
