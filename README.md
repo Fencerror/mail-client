@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/c7feeaed-cd46-4276-bddf-8f77f7ff6c36)# "Почтовый клиент"
+# "Почтовый клиент"
 
 ## Описание проекта:
 
