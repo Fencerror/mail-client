@@ -108,6 +108,7 @@ app/
 ### 5. **Создание письма (Create Message)**
 - Использует **Editor.js** для форматирования текста.
 - Кнопки **«Сохранить в черновики»** и **«Отправить»**.
+
 ![image](https://github.com/user-attachments/assets/45482ae6-54b1-4a66-a011-b46b0ddab971)
 
 
