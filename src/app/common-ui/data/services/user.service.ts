@@ -39,4 +39,14 @@ export class UserService {
   getUserByEmail(email: string): User | undefined {
     return this.getUsers().find(user => user.email === email);
   }
+
+  updateUsers(users: User[]): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(users));
+  }
+
+  getNextUserId(): number {
+    const users = this.getUsers();
+    const maxId = users.reduce((max, user) => user.id > max ? user.id : max, 0);
+    return maxId + 1; //Решил сделать автоинкремент id вместо date.now()
+  }
 }

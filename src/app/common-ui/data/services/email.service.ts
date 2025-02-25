@@ -55,6 +55,10 @@ export class EmailService {
     return drafts ? JSON.parse(drafts) : [];                    
   }
 
+  getDraftsByUser(email: string): Email[] {
+    return this.getDrafts().filter(draft => draft.from === email);
+  }
+
   saveDraft(email: Email): void {
     let drafts = this.getDrafts();
     const exIndex = drafts.findIndex(d => d.id === email.id);

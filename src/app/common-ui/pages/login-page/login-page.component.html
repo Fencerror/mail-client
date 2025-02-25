@@ -41,7 +41,18 @@
       type="submit"
       >Войти</button>
     </form>
+    <div class="links mt-4">
+      <a 
+      class="resetPasswordLink h5"
+      [routerLink]="['/resetPassword']"
+      routerLinkActive="active"
+      >Забыли пароль?</a>
+      <a
+      class="registerLink h5"
+      [routerLink]="['/registration']"
+      routerLinkActive="active"
+      >Зарегистрироваться</a>
+    </div>
   </div>
-
 </div>
 

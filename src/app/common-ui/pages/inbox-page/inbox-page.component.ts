@@ -52,6 +52,9 @@ export class InboxPageComponent implements OnInit {
     this.loadEmails();
   }
 
+  getReversedEmails(){
+    return this.emails.slice().reverse();
+  }
 
   selectEmail(email: Email): void {
     this.emailService.setSelectedEmail(email);

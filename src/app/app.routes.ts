@@ -6,6 +6,8 @@ import { CreatePageComponent } from './common-ui/pages/create-page/create-page.c
 import { AccessGuard} from './common-ui/data/guards/Access.guard';
 import { OutboxPageComponent } from './common-ui/pages/outbox-page/outbox-page.component';
 import { DraftsPageComponent } from './common-ui/pages/drafts-page/drafts-page.component';
+import { ResetPasswordComponent } from './common-ui/components/reset-password/reset-password.component';
+import { RegistrationPageComponent } from './common-ui/pages/registration-page/registration-page.component';
 export const routes: Routes = [
     {
       path: '', component: LayoutComponent, children: [
@@ -13,11 +15,14 @@ export const routes: Routes = [
         {path: 'inbox', component: InboxPageComponent},
         {path: 'create', component: CreatePageComponent},
         {path: 'outbox', component: OutboxPageComponent},
-        {path: 'drafts', component: DraftsPageComponent}
+        {path: 'drafts', component: DraftsPageComponent},
+        {path: 'resetPassword', component: ResetPasswordComponent}
       ],
       
       canActivate: [AccessGuard],
     },
-    {path: 'login', component: LoginPageComponent },
+    {path: 'login', component: LoginPageComponent},
+    { path: 'registration', component: RegistrationPageComponent },
+    {path: 'resetPassword', component: ResetPasswordComponent},
     { path: '**', redirectTo: 'inbox' } // Обработка 404
-];  
+];

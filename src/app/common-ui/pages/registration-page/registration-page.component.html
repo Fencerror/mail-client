@@ -1,0 +1,73 @@
+<div class="container mt-5">
+  <div class="card p-4 shadow">
+    <h2 class="text-center">Регистрация</h2>
+    <form
+    class="login-form"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input 
+        type="email" 
+        id="email" 
+        class="form-control" 
+        placeholder="Введите email"
+        formControlName="email"
+        [ngClass]="{'is-invalid': form.get('email')?.touched && form.get('email')?.invalid}"
+        >
+        <div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="invalid-feedback">
+          <div *ngIf="form.get('email')?.hasError('required')">Поле Email обязательно.</div>
+          <div *ngIf="form.get('email')?.hasError('email')">Введите корректный email.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <input  
+        type="password" 
+        id="password" 
+        class="form-control" 
+        placeholder="Введите пароль"
+        formControlName="password"
+        [ngClass]="{'is-invalid': form.get('password')?.touched && form.get('password')?.invalid}"
+        >
+        <div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="invalid-feedback">
+          <div *ngIf="form.get('password')?.hasError('required')">Поле пароль обязательно</div>
+          <div *ngIf="form.get('password')?.hasError('minlength')">Пароль должен состоять из 6 символов.</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="passwordConfirm" class="form-label">Повторно пароль</label>
+        <input  
+        type="password" 
+        id="passwordConfirm" 
+        class="form-control" 
+        placeholder="Повторите пароль"
+        formControlName="passwordConfirm"
+        [ngClass]="{'is-invalid': form.get('passwordConfirm')?.touched && form.get('passwordConfirm')?.invalid}"
+        >
+        <div *ngIf="form.get('passwordConfirm')?.touched && form.get('passwordConfirm')?.invalid" class="invalid-feedback">
+          <div *ngIf="form.get('passwordConfirm')?.hasError('required')">Поле обязательно</div>
+          <div *ngIf="form.get('passwordConfirm')?.hasError('mismatch')">Пароли не совпадают</div>
+        </div>
+      </div>
+      <button 
+      class="btn btn-success"
+      type="submit"
+      >Зарегистрироваться</button>
+      <div *ngIf="errorMessage" class="invalid-feedback d-block text-center">
+        {{ errorMessage }} 
+      </div>
+    </form>
+
+    <div class="links mt-4">
+      <p class="AlreadyHaveAccountText h5">Уже есть аккаунт?</p>
+      <a
+      class="AuthLink h5"
+      [routerLink]="['/login']"
+      routerLinkActive="active"
+      >Войти</a>
+    </div>
+  </div>
+</div>
+

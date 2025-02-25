@@ -40,6 +40,10 @@ loggedUser: {id:number; email: string} | null = null;
     }
   }
   
+  getReversedEmails(){
+    return this.emails.slice().reverse();
+  }
+  
   deleteEmail(id: number): void {
     this.emailService.deleteEmail(id);
     this.loadEmails();

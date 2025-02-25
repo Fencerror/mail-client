@@ -80,14 +80,6 @@ export class LayoutComponent {
     }
   }
   
-  continueDraft(): void {
-    if (this.selectedEmail) {
-      this.router.navigate(['/create'], {
-        queryParams: {draftid : this.selectedEmail.id}  //Обработка кнопки "продолжить" для черновика - передаём id черновика.
-      });
-    }
-  }
-  
   canBeReplied(): boolean { // Показываем кнопку "Ответить", если отправитель письма не совпадает с автором
     if (this.loggedUser.email !== this.selectedEmail?.from && !this.emailService.isDraft(this.selectedEmail!.id)) { 
       return true;
