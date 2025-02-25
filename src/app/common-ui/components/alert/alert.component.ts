@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   selector: 'app-alert',
   template: `
   <!-- html тело для алертов-->
-  <div *ngIf="message$ | async as msg" 
+  <div *ngIf="message$ | async as msg"  
     class="alert alert-info position-fixed bottom-0 start-50 translate-middle-x mb-4" 
-    role="alert">
+    role="alert"><!-- Берём последнее значение из мониторинга чтобы правильно интерполировать сообщение-->
   {{ msg }} 
 </div>
   `,
@@ -17,7 +17,7 @@ import { Observable } from 'rxjs';
 })
 
 export class AlertComponent implements OnInit {
-  message$!: Observable<string | null>;
+  message$!: Observable<string | null>; 
   private alertService: AlertService = inject(AlertService);
 
   ngOnInit(): void {
