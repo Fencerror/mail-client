@@ -24,9 +24,10 @@ export class LoginPageComponent {
 
   errorMessage: string | null = null;
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.userService.refreshUsers();
   }
+
   onSubmit(): void {
     if (this.form.invalid) {
       return;

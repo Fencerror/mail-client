@@ -12,7 +12,7 @@
         type="email" 
         id="email" 
         class="form-control" 
-        placeholder="Введите email"
+        placeholder="example@gmail.com"
         formControlName="email"
         [ngClass]="{'is-invalid': form.get('email')?.touched && form.get('email')?.invalid}"
         >
@@ -22,12 +22,26 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="password" class="form-label">Пароль</label>
+        <label for="phoneNumber" class="form-label">Номер телефона</label>
+        <input
+        type="phoneNumber"
+        id="phoneNumber"
+        class="form-control"
+        placeholder="+7 (999) 999-99-99"
+        formControlName="phoneNumber"
+        [ngClass]="{'is-invalid': form.get('phoneNumber')?.touched && form.get('phoneNumber')?.invalid}"
+        >
+        <div *ngIf="form.get('phoneNumber')?.touched && form.get('phoneNumber')?.invalid" class="invalid-feedback">
+          <div *ngIf="form.get('phoneNumber')?.hasError('required')">Номер телефона обязателен</div>
+          <div *ngIf="form.get('phoneNumber')?.hasError('email')">Введите существующий номер телефона</div>
+        </div>
+      </div>
+      <div class="mb-3 mt-3">
         <input  
         type="password" 
         id="password" 
         class="form-control" 
-        placeholder="Введите пароль"
+        placeholder="Пароль"
         formControlName="password"
         [ngClass]="{'is-invalid': form.get('password')?.touched && form.get('password')?.invalid}"
         >
@@ -37,7 +51,6 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="passwordConfirm" class="form-label">Повторно пароль</label>
         <input  
         type="password" 
         id="passwordConfirm" 

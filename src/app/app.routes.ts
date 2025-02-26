@@ -6,23 +6,23 @@ import { CreatePageComponent } from './common-ui/pages/create-page/create-page.c
 import { AccessGuard} from './common-ui/data/guards/Access.guard';
 import { OutboxPageComponent } from './common-ui/pages/outbox-page/outbox-page.component';
 import { DraftsPageComponent } from './common-ui/pages/drafts-page/drafts-page.component';
-import { ResetPasswordComponent } from './common-ui/components/reset-password/reset-password.component';
 import { RegistrationPageComponent } from './common-ui/pages/registration-page/registration-page.component';
+import { ResetPasswordPageComponent } from './common-ui/pages/reset-password-page/reset-password-page.component';
+
+
 export const routes: Routes = [
-    {
-      path: '', component: LayoutComponent, children: [
-        {path: '', redirectTo: 'inbox', pathMatch: 'full' },
-        {path: 'inbox', component: InboxPageComponent},
-        {path: 'create', component: CreatePageComponent},
-        {path: 'outbox', component: OutboxPageComponent},
-        {path: 'drafts', component: DraftsPageComponent},
-        {path: 'resetPassword', component: ResetPasswordComponent}
-      ],
-      
-      canActivate: [AccessGuard],
-    },
-    {path: 'login', component: LoginPageComponent},
-    { path: 'registration', component: RegistrationPageComponent },
-    {path: 'resetPassword', component: ResetPasswordComponent},
-    { path: '**', redirectTo: 'inbox' } // Обработка 404
+  {
+    path: '', component: LayoutComponent, children: [
+      { path: '', redirectTo: 'inbox', pathMatch: 'full' },
+      { path: 'inbox', component: InboxPageComponent },
+      { path: 'create', component: CreatePageComponent },
+      { path: 'outbox', component: OutboxPageComponent },
+      { path: 'drafts', component: DraftsPageComponent },
+    ],
+    canActivate: [AccessGuard],
+  },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'resetPassword', component: ResetPasswordPageComponent },
+  { path: 'registration', component: RegistrationPageComponent },
+  { path: '**', redirectTo: 'inbox' } // Обработка 404
 ];

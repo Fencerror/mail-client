@@ -16,12 +16,12 @@ export class UserService {
   private initializeUsers(): void {       //Тут мы инициализируем тестовых пользователей: id, email, password.
     if (!localStorage.getItem(this.storageKey)) {
       const defaultUsers: User[] = [
-        { id: 1, email: 'user1@gmail.com', password: '123456' },  
-        { id: 2, email: 'user2@gmail.com', password: '222222' },
-        { id: 3, email: 'user3@gmail.com', password: '333333'},
-        { id: 4, email: 'user4@gmail.com', password: '444444'},
-        { id: 5, email: 'user5@gmail.com', password: '555555'},
-        { id: 6, email: 'tyghrtzwrcv@gmail.com', password: '654321' },
+        { id: 1, email: 'user1@gmail.com', password: '123456', phoneNumber: '+77777777771' },  
+        { id: 2, email: 'user2@gmail.com', password: '222222', phoneNumber: '+77777777772'  },
+        { id: 3, email: 'user3@gmail.com', password: '333333', phoneNumber: '+77777777773' },
+        { id: 4, email: 'user4@gmail.com', password: '444444', phoneNumber: '+77777777774' },
+        { id: 5, email: 'user5@gmail.com', password: '555555', phoneNumber: '+77777777775' },
+        { id: 6, email: 'tyghrtzwrcv@gmail.com', password: '654321', phoneNumber: '+77777777777'  },
       ];
       localStorage.setItem(this.storageKey, JSON.stringify(defaultUsers));
     }

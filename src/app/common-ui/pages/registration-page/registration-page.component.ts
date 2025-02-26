@@ -16,6 +16,7 @@ export class RegistrationPageComponent {
   registerService: RegisterService = inject(RegisterService);
   form: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
+    phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
     password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
     passwordConfirm: new FormControl(null, [Validators.required, Validators.minLength(6)]),
   });
@@ -27,7 +28,7 @@ export class RegistrationPageComponent {
     }
 
     if (this.form.value.password !== this.form.value.passwordConfirm) {
-      this.errorMessage = 'Пароли не совпадают';
+      this.errorMessage = 'Пароли не совпадаюaт';
       return;
     }
     const success = this.registerService.register(this.form.value);

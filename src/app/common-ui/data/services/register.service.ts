@@ -9,7 +9,7 @@ export class RegisterService {
   private userService: UserService = inject(UserService);
   private storageKey = 'loggedUser';
 
-  register(payload: { email: string; password: string; passwordConfirm: string; }): boolean {
+  register(payload: { email: string; phoneNumber:string; password: string; passwordConfirm: string; }): boolean {
     const foundUser = this.userService.getUserByEmail(payload.email);
 
     if (foundUser) {
@@ -18,7 +18,8 @@ export class RegisterService {
       const newUser: User = {
         id: this.userService.getNextUserId(), // Используем метод для получения следующего id
         email: payload.email,
-        password: payload.password
+        phoneNumber: payload.phoneNumber,
+        password: payload.password,
       };
       const users = this.userService.getUsers();
       users.push(newUser);
