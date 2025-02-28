@@ -8,7 +8,7 @@ import { OutboxPageComponent } from './common-ui/pages/outbox-page/outbox-page.c
 import { DraftsPageComponent } from './common-ui/pages/drafts-page/drafts-page.component';
 import { RegistrationPageComponent } from './common-ui/pages/registration-page/registration-page.component';
 import { ResetPasswordPageComponent } from './common-ui/pages/reset-password-page/reset-password-page.component';
-
+import { ProfilePageComponent } from './common-ui/pages/profile-page/profile-page.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +18,7 @@ export const routes: Routes = [
       { path: 'create', component: CreatePageComponent },
       { path: 'outbox', component: OutboxPageComponent },
       { path: 'drafts', component: DraftsPageComponent },
+      { path: 'profile', component: ProfilePageComponent },
     ],
     canActivate: [AccessGuard],
   },

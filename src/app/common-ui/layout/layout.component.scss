@@ -28,6 +28,9 @@
     color: var(--background-color);
   }
 }
+.topbar-text{
+  cursor: pointer;
+}
 .content-row {
   overflow: hidden;
   flex: 1;

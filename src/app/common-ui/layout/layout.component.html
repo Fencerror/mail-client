@@ -2,7 +2,8 @@
   <!-- Верхняя панель-->
   <div class="topbar">
     <div class="topbar-main-container d-flex justify-content-end align-items-center p-3">
-      <p class="topbar-text mb-0">{{ loggedUser?.email }}</p>
+      <p class="topbar-text mb-0" [routerLink]="['/profile']"> {{ loggedUser?.email }}</p>
+
       <button class="exit-button" (click)="logout()">
         <svg class="icon" alt="иконка выхода">
           <use xlink:href="assets/imgs/svg/exit.svg#exit"></use>
