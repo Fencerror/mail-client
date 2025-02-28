@@ -34,9 +34,15 @@ export class DraftsPageComponent {
   }
 
   parseBody(body: string): string {
+    if (!body) {
+      return '';
+    }
     try {
       const parsed = JSON.parse(body);
-      return parsed.blocks.map((block: any) => block.data.text).join('\n');
+      if (parsed && parsed.blocks) {
+        return parsed.blocks.map((block: any) => block.data.text).join('\n');
+      }
+      return body;
     } catch (error) {
       console.error('Ошибка парсинга JSON:', error);
       return body;

@@ -115,4 +115,13 @@ export class LayoutComponent {
     }
   }
 
+  editDraft(): void {
+    const draft = this.selectedEmail;
+    this.router.navigate(['create'], {queryParams: {
+      to: draft?.to,
+      subject: draft?.subject,
+      body: draft?.body
+    }});
+  }
+
 }

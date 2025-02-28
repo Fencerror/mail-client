@@ -83,6 +83,20 @@ export class CreatePageComponent {
       }
     })
 
+    this.route.queryParams.subscribe(params => {
+      const to = params['to'];
+      const subject = params['subject'];
+      const body = params['body'];
+
+      if (to || subject || body) {
+        this.form.setValue({
+          to: to || '',
+          subject: subject || '',
+          body: body || ''
+        });
+      }
+    });
+
     this.routerSub = this.router.events.pipe(    // Подписка на смену маршрута для сохранения черновиков
       filter(event => event instanceof NavigationStart),
       debounceTime(300) 

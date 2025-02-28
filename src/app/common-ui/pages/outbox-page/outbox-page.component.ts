@@ -12,10 +12,11 @@ import { EmailService } from 'app/common-ui/data/services/email.service';
   styleUrl: './outbox-page.component.scss'
 })
 export class OutboxPageComponent {
-emails: Email[] = [];
-emailService: EmailService = inject(EmailService);
-authService: AuthService = inject(AuthService);
-loggedUser: {id:number; email: string} | null = null;
+  emails: Email[] = [];
+  emailService: EmailService = inject(EmailService);
+  authService: AuthService = inject(AuthService);
+  loggedUser: { id: number; email: string } | null = null;
+
   ngOnInit(): void {
     this.loggedUser = this.authService.getLoggedUser();
     this.loadEmails();
@@ -23,32 +24,40 @@ loggedUser: {id:number; email: string} | null = null;
 
   loadEmails(): void {
     const allEmails = this.emailService.getEmails();
-    // Фильтруем письма: показываем только те, где поле "from" совпадает с email текущего пользователя
-    if (this.loggedUser){
+    if (this.loggedUser) {
+      //фильтруем письма: показываем только те, где поле "from" совпадает с email текущего пользователя.
       this.emails = allEmails.filter(email => email.from === this.loggedUser!.email);
-    }else{
+    } else {
       this.emails = [];
     }
   }
+
   parseBody(body: string): string {
+    if (!body) {
+      return '';
+    }
     try {
       const parsed = JSON.parse(body);
-      return parsed.blocks.map((block: any) => block.data.text).join('\n'); 
+      if (parsed && parsed.blocks) {
+        return parsed.blocks.map((block: any) => block.data.text).join('\n');
+      }
+      return body;
     } catch (error) {
       console.error('Ошибка парсинга JSON:', error);
-      return body; 
+      return body;
     }
   }
-  
-  getReversedEmails(){
+
+  getReversedEmails() {
     return this.emails.slice().reverse();
   }
-  
+
   deleteEmail(id: number): void {
     this.emailService.deleteEmail(id);
     this.loadEmails();
   }
-  selectEmail(email:Email) : void {
+
+  selectEmail(email: Email): void {
     this.emailService.setSelectedEmail(email);
   }
 }

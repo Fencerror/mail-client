@@ -50,9 +50,12 @@
         <div *ngIf="selectedEmail" class="email-full__body">
           <p>{{ parseBody(selectedEmail.body) }} </p>
         </div>
-        <!-- Если это черновик, показываем кнопки "Отправить" и "Удалить", иначе кнопка "Ответить" -->
-        <button *ngIf="selectedEmail && emailService.isDraft(selectedEmail.id)" class="btn btn-primary reply-btn" (click)="sendDraft()">Отправить</button>
+        <!-- Если это черновик, показываем кнопки "Отправить" и "Редактировать", иначе кнопка "Ответить" -->
         <button *ngIf="selectedEmail?.id !== undefined && !emailService.isDraft(selectedEmail.id) && loggedUser.email!==selectedEmail.from" class="btn btn-primary reply-btn" (click)="reply()">Ответить</button>
+        <div class="buttons-container">
+          <button *ngIf="selectedEmail && emailService.isDraft(selectedEmail.id)" class="btn btn-primary draft-btn draft-button-1" (click)="sendDraft()">Отправить</button>
+          <button *ngIf="selectedEmail && emailService.isDraft(selectedEmail.id)" class="btn btn-primary draft-btn draft-button-2" (click)="editDraft()">Редактировать</button>
+        </div>
       </aside>
     </div>
     <!--Панель если никакие письма не выбраны-->
