@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from 'app/common-ui/data/services/user.service';
 import { AuthService } from 'app/common-ui/data/services/auth.service';
 import { User } from 'app/common-ui/data/interfaces/Shared.interface';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
@@ -9,16 +10,16 @@ import { User } from 'app/common-ui/data/interfaces/Shared.interface';
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
 })
-export class ProfilePageComponent implements OnInit {
-  user: any;
-  constructor(private userService: UserService, private authService: AuthService) {}
-
+export class ProfilePageComponent implements OnInit {;
+  router: Router = inject (Router);
+  userService: UserService = inject(UserService);
+  authService: AuthService = inject(AuthService);
+  user: User | null = null;
   ngOnInit(): void {
-    const loggedUser: User | null = this.authService.getLoggedUser();
-    if (loggedUser) {
-      this.user = this.userService.getUserByEmail(loggedUser.email);
-    } else {
-      console.error('Пользователь не авторизован.');
-    }
+    this.user = this.authService.getLoggedUser();
+  }
+
+  changePassword():void{
+    this.router.navigate(['/resetPassword']);
   }
 }

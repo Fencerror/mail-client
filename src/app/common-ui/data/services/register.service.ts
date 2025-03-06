@@ -20,6 +20,7 @@ export class RegisterService {
         email: payload.email,
         phoneNumber: payload.phoneNumber,
         password: payload.password,
+        emailSpam: []
       };
       const users = this.userService.getUsers();
       users.push(newUser);

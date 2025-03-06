@@ -3,6 +3,7 @@ export interface User {
   phoneNumber: string;
   email: string;
   password: string;
+  emailSpam: string[];
 }
 
 export interface Email {

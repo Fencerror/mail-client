@@ -44,6 +44,10 @@ export class LayoutComponent {
     {
       label: 'Черновики',
       link: '/drafts'
+    },  
+    {
+      label: 'Спам',
+      link: '/spam'
     }
   ];
 

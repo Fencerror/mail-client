@@ -57,17 +57,11 @@
   padding: 2rem;
 }
 
-.email-actions{
-  display: flex;
-  flex-direction: row;
-}
-
 .btn{
   background-color: var(--secondary-color);
   &:active, &:focus{
     border:none;
   }
-
 }
 .icon {
   &:hover{

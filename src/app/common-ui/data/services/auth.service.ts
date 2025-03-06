@@ -6,12 +6,12 @@ import { User } from '../interfaces/Shared.interface';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   private userService: UserService = inject(UserService);
   private router: Router = inject(Router);
   private storageKey = 'loggedUser';
   private verificationCodeKey = 'verificationCode';
-
   login(payload: { email: string; password: string }): boolean {
     const foundUser = this.userService.getUsers().find(
       user => user.email === payload.email && user.password === payload.password
@@ -31,9 +31,13 @@ export class AuthService {
 
   getLoggedUser(): User | null {
     const localUser = localStorage.getItem(this.storageKey);
-    return localUser ? (JSON.parse(localUser) as User) : null;
+    if (localUser) {
+      return JSON.parse(localUser) as User;
+    }else{ 
+      return null;
+    }
   }
-
+  
   verifyPhoneNumber(phoneNumber: string): boolean {
     const user = this.userService.getUsers().find(user => user.phoneNumber === phoneNumber);
     if (user) {
@@ -64,4 +68,8 @@ export class AuthService {
     }
     return false;
   }
+  setLoggedUser(user: { id: number; email: string; emailSpam: string[] }): void {
+    localStorage.setItem('loggedUser', JSON.stringify(user));
+  }
+  
 }

@@ -15,13 +15,16 @@
 
   <app-alert></app-alert>
 
-
   <div class="row content-row">
     <!-- Боковая панель с навигацией -->
     <div class="col-12 col-md-3 p-0">
       <nav class="sidebar mt-4 mr-4">
         <ul class="main-menu-list mt-5">
-          <li *ngFor="let menuItem of menuItems" class="menu-item">
+          <li 
+          *ngFor="let menuItem of menuItems" 
+          class="menu-item"
+          [ngClass]="{'mt-3': menuItem.label === 'Спам'}"
+          >
             <a 
               class="sidebar-items" 
               [routerLink]="menuItem.link"
@@ -69,5 +72,4 @@
       </div>
     </ng-template>
   </div>
-
 </div>
