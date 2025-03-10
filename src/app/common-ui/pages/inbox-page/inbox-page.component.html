@@ -15,7 +15,7 @@
            {{ email.date }}
         </div>
         <div class="email-preview flex-grow-1">
-          {{ parseBody(email.body)}}...
+          {{ parseBody(email.body)| slice:0:50}}...
         </div>
       </div>
       <div class="email-actions">

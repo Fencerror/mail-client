@@ -83,9 +83,10 @@
   grid-template-areas: 
     "from date"
     "body body"
-    "body body";
+    "body body"
+    "buttons buttons";
   height: 100%;
-  width: 100%;
+  width: 86%;
   margin-top: var(--sp-m);
   margin-left: var(--sp-m);
   padding: 1.2em;
@@ -93,15 +94,20 @@
   overflow: auto; 
   max-height: 50em;
   max-width: 30em;
-  &__from {grid-area: from; margin: 0; margin-right: 1.5em; border-bottom: 0.0625em solid var(--secondary-color);}
-  &__date {grid-area: date; margin: 0; border-bottom: 0.0625em solid var(--secondary-color);}
+  &__from {grid-area: from; margin: 0; margin-right: 1.5em; }
+  &__date {grid-area: date; margin: 0; }
   &__body {
     grid-area: body; 
+    border-top: 0.0625em solid var(--secondary-color);
     max-height: 20em;
     overflow-y: auto;
     p {word-break: break-all;}
   }
   
+}
+
+.buttons-container{
+  grid-area: buttons;
 }
 .no-email{
   background-color: var(--primary-color);
@@ -140,11 +146,6 @@
   };
 }
 
-.buttons-container{
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
 .exit-button {
   padding: 0.5em 1.5em;
   display: flex;
@@ -166,7 +167,6 @@
   padding: 0.2em 0.5em;
   width: 70%;
   height: 30%;
-  margin-left: 2em;
   margin-right: 0;
   border-radius: 0;
   color: var(--background-color);
@@ -197,6 +197,11 @@
     box-shadow: 0 0 2em var(--darkgray);
     background-color: var(--secondary-color);
   }
+}
+
+.buttons-container{
+  display: flex;
+  justify-content: space-between;
 }
 
 .draft-button-1, .draft-button-2{
