@@ -2,7 +2,8 @@
   <!-- Верхняя панель-->
   <div class="topbar">
     <div class="topbar-main-container d-flex justify-content-end align-items-center p-3">
-      <p class="topbar-text mb-0">{{ loggedUser?.email }}</p>
+      <p class="topbar-text mb-0" [routerLink]="['/profile']"> {{ loggedUser?.email }}</p>
+
       <button class="exit-button" (click)="logout()">
         <svg class="icon" alt="иконка выхода">
           <use xlink:href="assets/imgs/svg/exit.svg#exit"></use>
@@ -14,13 +15,16 @@
 
   <app-alert></app-alert>
 
-
   <div class="row content-row">
     <!-- Боковая панель с навигацией -->
     <div class="col-12 col-md-3 p-0">
       <nav class="sidebar mt-4 mr-4">
         <ul class="main-menu-list mt-5">
-          <li *ngFor="let menuItem of menuItems" class="menu-item">
+          <li 
+          *ngFor="let menuItem of menuItems" 
+          class="menu-item"
+          [ngClass]="{'mt-3': menuItem.label === 'Спам'}"
+          >
             <a 
               class="sidebar-items" 
               [routerLink]="menuItem.link"
@@ -50,9 +54,12 @@
         <div *ngIf="selectedEmail" class="email-full__body">
           <p>{{ parseBody(selectedEmail.body) }} </p>
         </div>
-        <!-- Если это черновик, показываем кнопки "Отправить" и "Удалить", иначе кнопка "Ответить" -->
-        <button *ngIf="selectedEmail && emailService.isDraft(selectedEmail.id)" class="btn btn-primary reply-btn" (click)="sendDraft()">Отправить</button>
+        <!-- Если это черновик, показываем кнопки "Отправить" и "Редактировать", иначе кнопка "Ответить" -->
         <button *ngIf="selectedEmail?.id !== undefined && !emailService.isDraft(selectedEmail.id) && loggedUser.email!==selectedEmail.from" class="btn btn-primary reply-btn" (click)="reply()">Ответить</button>
+        <div class="buttons-container">
+          <button *ngIf="selectedEmail && emailService.isDraft(selectedEmail.id)" class="btn btn-primary draft-btn draft-button-1" (click)="sendDraft()">Отправить</button>
+          <button *ngIf="selectedEmail && emailService.isDraft(selectedEmail.id)" class="btn btn-primary draft-btn draft-button-2" (click)="editDraft()">Редактировать</button>
+        </div>
       </aside>
     </div>
     <!--Панель если никакие письма не выбраны-->
@@ -65,5 +72,4 @@
       </div>
     </ng-template>
   </div>
-
 </div>

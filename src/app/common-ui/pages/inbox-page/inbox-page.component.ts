@@ -19,17 +19,20 @@ export class InboxPageComponent implements OnInit {
   emailService: EmailService = inject(EmailService);
   authService: AuthService = inject(AuthService);
   alertService: AlertService = inject(AlertService);
-  loggedUser: { id: number; email: string } | null = null;
+  loggedUser: { id: number; email: string; emailSpam: string[] } | null = null;
+  emailSpam: string[] = [];
   ngOnInit(): void {
     this.loggedUser = this.authService.getLoggedUser();
+    this.emailSpam = this.loggedUser?.emailSpam || [];
     this.loadEmails();
   }
 
   loadEmails(): void {
     const allEmails = this.emailService.getEmails();
-    // Фильтруем письма: показываем только те, где поле "to" совпадает с email текущего пользователя
+    // Фильтруем письма: показываем только те, где поле "to" совпадает с email текущего пользователя 
+    // и письма не из спама.
     if (this.loggedUser) {
-      this.emails = allEmails.filter(email => email.to === this.loggedUser!.email);
+      this.emails = allEmails.filter(email => email.to === this.loggedUser!.email && email.from!== this.emailSpam.find(spam => spam === email.from));
     } else {
       this.emails = [];
     }
@@ -45,6 +48,20 @@ export class InboxPageComponent implements OnInit {
     }
   }
   
+  addIntoSpam(from: string): void {
+    if (this.loggedUser) {
+      const updatedUser = {
+        ...this.loggedUser,
+        emailSpam: [...(this.loggedUser.emailSpam || []), from] // Добавляем в массив спама или создаём его.
+      };
+      localStorage.setItem('loggedUser', JSON.stringify(updatedUser));
+      this.loggedUser = updatedUser; 
+    this.authService.setLoggedUser(updatedUser);
+    this.loggedUser = updatedUser;
+    this.loadEmails();
+  }
+}
+
   deleteEmail(id: number): void {
     this.emailService.deleteEmail(id);
     this.emailService.selectEmail(null); // Сбрасываем выбранное письмо
@@ -52,6 +69,9 @@ export class InboxPageComponent implements OnInit {
     this.loadEmails();
   }
 
+  getReversedEmails(){
+    return this.emails.slice().reverse();
+  }
 
   selectEmail(email: Email): void {
     this.emailService.setSelectedEmail(email);

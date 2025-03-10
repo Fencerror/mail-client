@@ -74,13 +74,12 @@ h2 {
   margin-top: 1em;
 }
 
-.resetPasswordLink, .registerLink{
+.AuthLink{
   cursor: pointer;
   text-decoration: none;
-  color: var(--primary-color);
-  
+  color: var(--accent-color);
 }
 
-.registerLink{
-  color: var(--accent-color);
+.AlreadyHaveAccountText{
+  color: var(--primary-color);
 }

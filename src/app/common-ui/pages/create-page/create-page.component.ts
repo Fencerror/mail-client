@@ -10,6 +10,7 @@ import { UserService } from 'app/common-ui/data/services/user.service';
 import EditorJS from '@editorjs/editorjs';
 import { AlertService } from 'app/common-ui/data/services/alert.service';
 
+
 @Component({
   selector: 'app-create-page',
   standalone: true,
@@ -41,14 +42,13 @@ export class CreatePageComponent {
 
   
   ngOnInit(): void {
-    
+    this.form.reset(); // Очистка формы 
     this.loggedUser = this.authService.getLoggedUser();
     if (!this.loggedUser) {                     //Проверка на авторизацию.
       this.alertService.show('Черновик сохранён');
       this.router.navigateByUrl('/login');
     }
 
-    this.loadDrafts();
 
     this.form.get('to')?.valueChanges.pipe(
       debounceTime(3000)
@@ -82,6 +82,20 @@ export class CreatePageComponent {
         }
       }
     })
+
+    this.route.queryParams.subscribe(params => {
+      const to = params['to'];
+      const subject = params['subject'];
+      const body = params['body'];
+
+      if (to || subject || body) {
+        this.form.setValue({
+          to: to || '',
+          subject: subject || '',
+          body: body || ''
+        });
+      }
+    });
 
     this.routerSub = this.router.events.pipe(    // Подписка на смену маршрута для сохранения черновиков
       filter(event => event instanceof NavigationStart),

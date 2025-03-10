@@ -3,6 +3,7 @@ import { Email } from 'app/common-ui/data/interfaces/Shared.interface';
 import { EmailService } from 'app/common-ui/data/services/email.service';
 import { CommonModule } from '@angular/common';
 import { AlertService } from 'app/common-ui/data/services/alert.service';
+import { AuthService } from 'app/common-ui/data/services/auth.service';
 
 @Component({
   selector: 'app-drafts-page',
@@ -14,14 +15,18 @@ export class DraftsPageComponent {
   drafts: Email[] = [];
   emailService: EmailService = inject(EmailService);
   alertService: AlertService = inject(AlertService);
-  ngOnInit(): void {              
-    this.drafts = this.emailService.getDrafts(); //Для отображения черновиков сделал отдельный метод в emailService.
-  
-    this.loadDrafts(); 
+  authService: AuthService = inject(AuthService);
+  loggedUser: { id: number; email: string } | null = null;
+
+  ngOnInit(): void {
+    this.loggedUser = this.authService.getLoggedUser();
+    this.loadDrafts();
   }
 
   loadDrafts(): void {
-    this.drafts = this.emailService.getDrafts();
+    if (this.loggedUser) {
+      this.drafts = this.emailService.getDraftsByUser(this.loggedUser.email);
+    }
   }
 
   selectDraft(email: Email): void {
@@ -29,18 +34,28 @@ export class DraftsPageComponent {
   }
 
   parseBody(body: string): string {
+    if (!body) {
+      return '';
+    }
     try {
       const parsed = JSON.parse(body);
-      return parsed.blocks.map((block: any) => block.data.text).join('\n'); 
+      if (parsed && parsed.blocks) {
+        return parsed.blocks.map((block: any) => block.data.text).join('\n');
+      }
+      return body;
     } catch (error) {
       console.error('Ошибка парсинга JSON:', error);
-      return body; 
+      return body;
     }
   }
-  
-  deleteDraft(id: number): void{
+
+  getReversedDrafts() {
+    return this.drafts.slice().reverse();
+  }
+
+  deleteDraft(id: number): void {
     this.emailService.deleteDraft(id);
-    this.emailService.selectEmail(null); // Сбрасываем выбранное письмо
+    this.emailService.selectEmail(null);
     this.alertService.show('Черновик удален');
     this.loadDrafts();
   }
